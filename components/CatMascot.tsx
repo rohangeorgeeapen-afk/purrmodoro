@@ -44,7 +44,16 @@ const CatMascot: React.FC<CatMascotProps> = ({ mode, isActive, timeLeft, totalTi
   const displayImage = showAlmostDone ? ALMOST_DONE_IMAGE : currentImage;
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-full space-y-4">
+      {/* Encouraging Message */}
+      {showAlmostDone && (
+        <div className="bg-pastel-yellow border-2 border-doodle-black rounded-2xl px-4 py-2 shadow-doodle animate-bounce">
+          <p className="text-center text-lg font-bold text-doodle-black">
+            You're almost done, keep going! 💪
+          </p>
+        </div>
+      )}
+      
       {/* Cat Image Container */}
       <div className={`relative z-10 transition-all duration-500 ${isActive ? 'scale-105' : 'scale-100'}`}>
         <img 
