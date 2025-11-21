@@ -25,10 +25,12 @@ const CatMascot: React.FC<CatMascotProps> = ({ mode, isActive, timeLeft, totalTi
       const randomIndex = Math.floor(Math.random() * STUDY_IMAGES.length);
       setCurrentImage(STUDY_IMAGES[randomIndex]);
     } else {
-      const randomIndex = Math.floor(Math.random() * REST_IMAGES.length);
-      setCurrentImage(REST_IMAGES[randomIndex]);
+      // For rest modes, pick a different image than the current one
+      const availableImages = REST_IMAGES.filter(img => img !== currentImage);
+      const randomIndex = Math.floor(Math.random() * availableImages.length);
+      setCurrentImage(availableImages[randomIndex] || REST_IMAGES[0]);
     }
-  }, [mode, isWork]);
+  }, [mode]);
 
   const displayImage = showAlmostDone ? ALMOST_DONE_IMAGE : currentImage;
 
