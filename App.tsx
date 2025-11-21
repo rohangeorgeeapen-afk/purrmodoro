@@ -30,10 +30,25 @@ const App: React.FC = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showNotificationWarning, setShowNotificationWarning] = useState<boolean>(false);
-  const [settings, setSettings] = useState({
-    workDuration: DEFAULT_SETTINGS.workDuration,
-    shortBreakDuration: DEFAULT_SETTINGS.shortBreakDuration,
-    longBreakDuration: DEFAULT_SETTINGS.longBreakDuration,
+  const [settings, setSettings] = useState(() => {
+    // Load settings from localStorage or use defaults
+    const savedSettings = localStorage.getItem('purrmodoro-settings');
+    if (savedSettings) {
+      try {
+        return JSON.parse(savedSettings);
+      } catch {
+        return {
+          workDuration: DEFAULT_SETTINGS.workDuration,
+          shortBreakDuration: DEFAULT_SETTINGS.shortBreakDuration,
+          longBreakDuration: DEFAULT_SETTINGS.longBreakDuration,
+        };
+      }
+    }
+    return {
+      workDuration: DEFAULT_SETTINGS.workDuration,
+      shortBreakDuration: DEFAULT_SETTINGS.shortBreakDuration,
+      longBreakDuration: DEFAULT_SETTINGS.longBreakDuration,
+    };
   });
   const intervalRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -122,6 +137,8 @@ const App: React.FC = () => {
 
   const saveSettings = (newSettings: typeof settings) => {
     setSettings(newSettings);
+    // Save to localStorage
+    localStorage.setItem('purrmodoro-settings', JSON.stringify(newSettings));
     setShowSettings(false);
     // Update current timer if not active
     if (!isActive) {
