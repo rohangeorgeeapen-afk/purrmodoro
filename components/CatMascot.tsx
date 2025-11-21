@@ -19,6 +19,15 @@ const CatMascot: React.FC<CatMascotProps> = ({ mode, isActive, timeLeft, totalTi
   const progress = 1 - (timeLeft / totalTime);
   const showAlmostDone = isWork && progress >= 0.75;
 
+  // Preload all images on mount
+  useEffect(() => {
+    const allImages = [...STUDY_IMAGES, ...REST_IMAGES, ALMOST_DONE_IMAGE];
+    allImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   useEffect(() => {
     // Pick a random image when mode changes
     if (isWork) {
