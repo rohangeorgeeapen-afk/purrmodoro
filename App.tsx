@@ -26,7 +26,6 @@ const CloseIcon = () => (
 
 const App: React.FC = () => {
   const [mode, setMode] = useState<TimerMode>(TimerMode.WORK);
-  const [timeLeft, setTimeLeft] = useState<number>(DEFAULT_SETTINGS.workDuration);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [showNotificationWarning, setShowNotificationWarning] = useState<boolean>(false);
@@ -49,6 +48,19 @@ const App: React.FC = () => {
       shortBreakDuration: DEFAULT_SETTINGS.shortBreakDuration,
       longBreakDuration: DEFAULT_SETTINGS.longBreakDuration,
     };
+  });
+  const [timeLeft, setTimeLeft] = useState<number>(() => {
+    // Initialize with saved settings
+    const savedSettings = localStorage.getItem('purrmodoro-settings');
+    if (savedSettings) {
+      try {
+        const parsed = JSON.parse(savedSettings);
+        return parsed.workDuration;
+      } catch {
+        return DEFAULT_SETTINGS.workDuration;
+      }
+    }
+    return DEFAULT_SETTINGS.workDuration;
   });
   const intervalRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
