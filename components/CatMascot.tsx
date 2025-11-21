@@ -47,9 +47,9 @@ const CatMascot: React.FC<CatMascotProps> = ({ mode, isActive, timeLeft, totalTi
     <div className="flex flex-col items-center w-full space-y-4">
       {/* Encouraging Message */}
       {showAlmostDone && (
-        <div className="bg-pastel-yellow border-2 border-doodle-black rounded-2xl px-4 py-2 shadow-doodle animate-bounce">
+        <div className="bg-pastel-yellow border-2 border-doodle-black rounded-2xl px-4 py-2 shadow-doodle">
           <p className="text-center text-lg font-bold text-doodle-black">
-            You're almost done, keep going! 💪
+            You're almost done, keep going!
           </p>
         </div>
       )}
