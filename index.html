@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PurrModoro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'paper': '#fdf6e3',
+              'doodle-black': '#2c2c2c',
+              'pastel-pink': '#ffd1dc',
+              'pastel-blue': '#c1e1c1', // actually pastel green/mint
+              'pastel-yellow': '#fdfd96',
+            },
+            fontFamily: {
+              'doodle': ['"Patrick Hand"', 'cursive'],
+            },
+            boxShadow: {
+              'doodle': '3px 3px 0px 0px #2c2c2c',
+              'doodle-hover': '5px 5px 0px 0px #2c2c2c',
+              'doodle-pressed': '1px 1px 0px 0px #2c2c2c',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #fdf6e3;
+        font-family: 'Patrick Hand', cursive;
+        color: #2c2c2c;
+        /* Grid background pattern */
+        background-image: linear-gradient(#e5e5e5 1px, transparent 1px),
+        linear-gradient(90deg, #e5e5e5 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
