@@ -161,22 +161,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-[100dvh] flex flex-col items-center justify-center py-6 px-4 lg:py-12">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="fixed top-0 left-0 w-full h-full object-cover -z-10"
-      >
-        <source src="/live.mp4" type="video/mp4" />
-      </video>
+    <div className={`min-h-[100dvh] flex flex-col items-center justify-center transition-colors duration-500 ${MODE_COLORS[mode]} bg-opacity-20 py-6 px-4 lg:py-12`}>
       
-      {/* Overlay for better readability */}
-      <div className={`fixed top-0 left-0 w-full h-full -z-5 transition-colors duration-500 ${MODE_COLORS[mode]} bg-opacity-20`}></div>
-      
-      <header className="mb-6 lg:mb-10 text-center relative z-10">
+      <header className="mb-6 lg:mb-10 text-center">
         <h1 className="text-4xl lg:text-5xl font-bold text-doodle-black mb-2 tracking-wide drop-shadow-sm">
           PurrModoro
         </h1>
